@@ -4,15 +4,19 @@ import defaultOptions from './config.json'
 function generateFunctionalComponent(COMPONENT_NAME, { cssExtension } = defaultOptions) {
   return `${generateImports(COMPONENT_NAME, { cssExtension })}
 
-const ${COMPONENT_NAME} = ({}) => (
+const styleSheet = createStyleSheet('${COMPONENT_NAME}', {
+});
+
+type ${COMPONENT_NAME}PropsType = WithStylesComponentType & {
+}
+
+const ${COMPONENT_NAME} = ({}: ${COMPONENT_NAME}PropsType) => (
   <div className="${COMPONENT_NAME}"></div>
 );
 
-${COMPONENT_NAME}.propTypes = {}
-
 ${COMPONENT_NAME}.defaultProps = {}
 
-export default ${COMPONENT_NAME}
+export default withStyles(styleSheet)(${COMPONENT_NAME})
 `
 }
 
